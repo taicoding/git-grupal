@@ -6,6 +6,7 @@ Lista de ingredientes:
 - 1/2 kg de jamón
 - 1/2 kg de piña
 - 1/2 kg de champiñones
+Preparación:
 1. comprar los ingredientes
 2. mezclar los ingredientes
 3. hornear la pizza
