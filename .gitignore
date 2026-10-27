@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.scrapy/
+jobs/
+seprec_state.sqlite3
+seprec_state.sqlite3-*

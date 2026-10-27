@@ -1,0 +1,4 @@
+empresa,status,http_status,queried_at,data,error
+HIPERMAXI,forbidden,403,2026-10-27T12:47:40.577784+00:00,,Acceso rechazado; se detiene el lote.
+ABRAHAN TITO MAMANI,forbidden,403,2026-10-27T12:47:48.533665+00:00,,Acceso rechazado; se detiene el lote.
+MI ALIMENTITO,forbidden,403,2026-10-27T12:47:56.550461+00:00,,Acceso rechazado; se detiene el lote.
