@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-27",
+  "request_count": 3,
+  "results": {
+    "HIPERMAXI": {
+      "queried_at": "2026-10-27T12:03:04.687566+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "data": {
+        "finalizado": true,
+        "mensaje": "¡Registro(s) obtenido(s) con éxito!",
+        "datos": {
+          "total": 1,
+          "filas": [
+            {
+              "estado": "ACTIVO",
+              "id": "13151",
+              "matricula": "1028627025",
+              "matriculaAnterior": "00013155",
+              "razonSocial": "HIPERMAXI S.A.",
+              "codEstadoActualizacion": {
+                "id": 16,
+                "codigo": "0",
+                "nombre": "MATRICULA RENOVADA"
+              },
+              "codTipoUnidadEconomica": {
+                "id": 23,
+                "codigo": "07",
+                "nombre": "SOCIEDAD ANONIMA"
+              },
+              "direccion": {
+                "id": "13151",
+                "codDepartamento": {
+                  "id": 425,
+                  "codigo": "07",
+                  "nombre": "SANTA CRUZ"
+                }
+              },
+              "idEstablecimiento": "13151"
+            }
+          ],
+          "tipoFiltro": "nombre"
+        }
+      }
+    },
+    "ABRAHAN TITO MAMANI": {
+      "queried_at": "2026-10-27T12:03:25.449403+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "data": {
+        "finalizado": true,
+        "mensaje": "¡Registro(s) obtenido(s) con éxito!",
+        "datos": {
+          "total": 1,
+          "filas": [
+            {
+              "estado": "ACTIVO",
+              "id": "161628",
+              "matricula": "8549811018",
+              "matriculaAnterior": "00214195",
+              "razonSocial": "ABRAHAN TITO MAMANI",
+              "codEstadoActualizacion": {
+                "id": 17,
+                "codigo": "1",
+                "nombre": "MATRICULA NO RENOVADA"
+              },
+              "codTipoUnidadEconomica": {
+                "id": 18,
+                "codigo": "01",
+                "nombre": "EMPRESA UNIPERSONAL"
+              },
+              "direccion": {
+                "id": "161628",
+                "codDepartamento": {
+                  "id": 419,
+                  "codigo": "01",
+                  "nombre": "CHUQUISACA"
+                }
+              },
+              "idEstablecimiento": "161628"
+            }
+          ],
+          "tipoFiltro": "nombre"
+        }
+      }
+    },
+    "MI ALIMENTITO": {
+      "queried_at": "2026-10-27T12:03:42.139986+00:00",
+      "status": "ok",
+      "http_status": 200,
+      "data": {
+        "finalizado": true,
+        "mensaje": "¡Registro(s) obtenido(s) con éxito!",
+        "datos": {
+          "total": 1,
+          "filas": [
+            {
+              "estado": "ACTIVO",
+              "id": "372894",
+              "matricula": "426761",
+              "matriculaAnterior": "00426761",
+              "razonSocial": "\" MI ALIMENTITO\"  ALIMENTOS ECOLOGICOS",
+              "codEstadoActualizacion": {
+                "id": 17,
+                "codigo": "1",
+                "nombre": "MATRICULA NO RENOVADA"
+              },
+              "codTipoUnidadEconomica": {
+                "id": 18,
+                "codigo": "01",
+                "nombre": "EMPRESA UNIPERSONAL"
+              },
+              "direccion": {
+                "id": "438448",
+                "codDepartamento": {
+                  "id": 422,
+                  "codigo": "04",
+                  "nombre": "ORURO"
+                }
+              },
+              "idEstablecimiento": "372894"
+            }
+          ],
+          "tipoFiltro": "nombre"
+        }
+      }
+    }
+  }
+}
