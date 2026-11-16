@@ -77,8 +77,12 @@ def validate_transactions(
         raise ValueError(f"Missing transaction columns: {missing}")
     expected_types = set(types["tipo_transaccion"].unique().to_list())
     observed_types = set(transactions["tipo_transaccion"].unique().to_list())
+    catalog_pairs = types.select(["tipo_transaccion", "subtipo_transaccion"])
+    duplicate_catalog_pairs = types.height - types.unique(
+        ["tipo_transaccion", "subtipo_transaccion"]
+    ).height
     invalid_pairs = transactions.join(
-        types.select(["tipo_transaccion", "subtipo_transaccion"]).unique(),
+        catalog_pairs.unique(),
         on=["tipo_transaccion", "subtipo_transaccion"],
         how="anti",
     ).height
@@ -92,10 +96,13 @@ def validate_transactions(
         "unique_clients": transactions["codigo_cliente"].n_unique(),
         "observed_transaction_types": len(observed_types),
         "catalog_transaction_types": len(expected_types),
+        "missing_transaction_types": sorted(expected_types - observed_types),
+        "catalog_duplicate_pairs": duplicate_catalog_pairs,
         "missing_values": {c: transactions[c].null_count() for c in TRANSACTION_COLUMNS},
         "duplicate_rows": transactions.height - transactions.unique().height,
         "invalid_catalog_pairs": invalid_pairs,
         "sign_mismatches": sign_mismatches,
+        "invalid_dates": transactions["fecha_transaccion"].is_null().sum(),
         "date_min": transactions["fecha_transaccion"].min(),
         "date_max": transactions["fecha_transaccion"].max(),
     }
@@ -112,6 +119,10 @@ def _entropy(values: pl.Expr, total: pl.Expr) -> pl.Expr:
 
 def build_customer_features(transactions: pl.DataFrame) -> pl.DataFrame:
     """Aggregate transaction records into interpretable customer features."""
+    if transactions.schema["fecha_transaccion"] == pl.String:
+        transactions = transactions.with_columns(
+            pl.col("fecha_transaccion").str.to_datetime(strict=True)
+        )
     base = transactions.with_columns(
         pl.when(pl.col("monto") < 0).then(-pl.col("monto")).otherwise(0).alias("debit_abs"),
         pl.when(pl.col("monto") >= 0).then(pl.col("monto")).otherwise(0).alias("credit_abs"),
@@ -133,15 +144,35 @@ def build_customer_features(transactions: pl.DataFrame) -> pl.DataFrame:
         pl.col("subtipo_transaccion").n_unique().alias("subtype_count"),
         pl.col("banco_destino").drop_nulls().n_unique().alias("bank_count"),
     )
-    by_type = base.group_by(["codigo_cliente", "tipo_transaccion"]).agg(pl.len().alias("n"))
+    by_type = base.group_by(["codigo_cliente", "tipo_transaccion"]).agg(
+        pl.len().alias("n"),
+        pl.col("debit_abs").sum().alias("debit_amount"),
+        pl.col("credit_abs").sum().alias("credit_amount"),
+    )
     type_stats = by_type.group_by("codigo_cliente").agg(
         _share_hhi(pl.col("n"), pl.col("n").sum()).alias("type_hhi"),
         _entropy(pl.col("n"), pl.col("n").sum()).alias("type_entropy"),
+        _share_hhi(pl.col("debit_amount"), pl.col("debit_amount").sum()).alias(
+            "debit_type_hhi"
+        ),
+        _share_hhi(pl.col("credit_amount"), pl.col("credit_amount").sum()).alias(
+            "credit_type_hhi"
+        ),
     )
-    by_subtype = base.group_by(["codigo_cliente", "subtipo_transaccion"]).agg(pl.len().alias("n"))
+    by_subtype = base.group_by(["codigo_cliente", "subtipo_transaccion"]).agg(
+        pl.len().alias("n"),
+        pl.col("debit_abs").sum().alias("debit_amount"),
+        pl.col("credit_abs").sum().alias("credit_amount"),
+    )
     subtype_stats = by_subtype.group_by("codigo_cliente").agg(
         _share_hhi(pl.col("n"), pl.col("n").sum()).alias("subtype_hhi"),
         _entropy(pl.col("n"), pl.col("n").sum()).alias("subtype_entropy"),
+        _share_hhi(pl.col("debit_amount"), pl.col("debit_amount").sum()).alias(
+            "debit_subtype_hhi"
+        ),
+        _share_hhi(pl.col("credit_amount"), pl.col("credit_amount").sum()).alias(
+            "credit_subtype_hhi"
+        ),
     )
     return (
         totals.join(type_stats, on="codigo_cliente", how="left")
@@ -149,6 +180,10 @@ def build_customer_features(transactions: pl.DataFrame) -> pl.DataFrame:
         .with_columns(
             (pl.col("debit_total") + pl.col("credit_total")).alias("gross_amount"),
             (pl.col("amount_p75") - pl.col("amount_p25")).alias("amount_iqr"),
+            (pl.col("type_entropy") / np.log(57)).alias("type_entropy_normalized"),
+            (pl.col("subtype_entropy") / np.log(57)).alias(
+                "subtype_entropy_normalized"
+            ),
         )
         .sort("codigo_cliente")
     )
@@ -190,6 +225,12 @@ def run_clustering(matrix: np.ndarray, algorithm: str, n_clusters: int = 4, rand
         "agglomerative": AgglomerativeClustering(n_clusters=n_clusters),
         "dbscan": DBSCAN(eps=0.8, min_samples=10),
     }
+    try:
+        from hdbscan import HDBSCAN
+    except ImportError:
+        HDBSCAN = None
+    if HDBSCAN is not None:
+        models["hdbscan"] = HDBSCAN(min_cluster_size=25)
     if algorithm not in models:
         raise ValueError(f"Unsupported algorithm: {algorithm}")
     model = models[algorithm]
