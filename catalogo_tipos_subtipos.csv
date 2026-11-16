@@ -1,0 +1,153 @@
+tipo_transaccion,descripcion_tipo,subtipo_transaccion,descripcion_subtipo
+1,Transferencias,1,Transferencia a tercero
+1,Transferencias,2,Transferencia propia
+1,Transferencias,3,Transferencia interbancaria
+1,Transferencias,4,Transferencia inmediata
+2,Pago de servicios,1,Agua
+2,Pago de servicios,2,Electricidad
+2,Pago de servicios,3,Gas
+2,Pago de servicios,4,Telefonía
+2,Pago de servicios,5,Internet
+3,Compras con tarjeta,1,Compra nacional
+3,Compras con tarjeta,2,Compra internacional
+3,Compras con tarjeta,3,Compra presencial
+3,Compras con tarjeta,4,Compra en línea
+4,Retiros,1,Retiro en cajero
+4,Retiros,2,Retiro en ventanilla
+4,Retiros,3,Retiro corresponsal
+5,Depósitos,1,Depósito en efectivo
+5,Depósitos,2,Depósito por transferencia
+5,Depósitos,3,Depósito en cheque
+6,Pago de créditos,1,Cuota de préstamo
+6,Pago de créditos,2,Pago total de crédito
+6,Pago de créditos,3,Pago parcial
+7,Impuestos,1,Impuesto nacional
+7,Impuestos,2,Impuesto municipal
+7,Impuestos,3,Impuesto a inmueble
+7,Impuestos,4,Impuesto a vehículo
+8,Comisiones,1,Comisión de mantenimiento
+8,Comisiones,2,Comisión por transferencia
+8,Comisiones,3,Comisión por servicio
+9,Transferencias internas,1,Traspaso entre cuentas propias
+9,Transferencias internas,2,Traspaso entre productos
+10,Pago de salarios,1,Abono salarial
+10,Pago de salarios,2,Pago de planilla
+10,Pago de salarios,3,Pago de honorarios
+11,Recargas,1,Recarga móvil
+11,Recargas,2,Recarga billetera
+11,Recargas,3,Recarga transporte
+12,Pagos educativos,1,Matrícula
+12,Pagos educativos,2,Mensualidad
+12,Pagos educativos,3,Curso y capacitación
+13,Pagos de salud,1,Consulta
+13,Pagos de salud,2,Laboratorio
+13,Pagos de salud,3,Farmacia
+13,Pagos de salud,4,Clínica
+14,Seguros,1,Prima de seguro
+14,Seguros,2,Seguro de vida
+14,Seguros,3,Seguro vehicular
+15,Ahorros,1,Aporte a ahorro
+15,Ahorros,2,Retiro de ahorro
+15,Ahorros,3,Transferencia a ahorro
+16,Inversiones,1,Compra de valores
+16,Inversiones,2,Rescate de inversión
+16,Inversiones,3,Rendimiento
+17,Comercio electrónico,1,Marketplace
+17,Comercio electrónico,2,Comercio digital
+17,Comercio electrónico,3,Pago de aplicación
+18,Pagos a proveedores,1,Pago a proveedor
+18,Pagos a proveedores,2,Pago de factura
+18,Pagos a proveedores,3,Anticipo
+19,Remesas,1,Remesa recibida
+19,Remesas,2,Remesa enviada
+20,Débitos automáticos,1,Débito recurrente
+20,Débitos automáticos,2,Débito autorizado
+20,Débitos automáticos,3,Débito por convenio
+21,Pago de alquiler,1,Alquiler vivienda
+21,Pago de alquiler,2,Alquiler comercial
+22,Transporte,1,Pasaje
+22,Transporte,2,Taxi
+22,Transporte,3,Transporte urbano
+22,Transporte,4,Combustible
+23,Alimentación,1,Supermercado
+23,Alimentación,2,Restaurante
+23,Alimentación,3,Mercado
+23,Alimentación,4,Delivery
+24,Suscripciones,1,Streaming
+24,Suscripciones,2,Software
+24,Suscripciones,3,Membresía
+25,Telefonía,1,Plan móvil
+25,Telefonía,2,Prepago
+25,Telefonía,3,Postpago
+26,Internet,1,Plan residencial
+26,Internet,2,Servicio corporativo
+27,Electricidad,1,Consumo domiciliario
+27,Electricidad,2,Consumo comercial
+28,Agua,1,Consumo domiciliario
+28,Agua,2,Consumo comercial
+29,Gas,1,Consumo domiciliario
+29,Gas,2,Consumo comercial
+30,Cable y televisión,1,Televisión
+30,Cable y televisión,2,Paquete combinado
+31,Servicios profesionales,1,Consultoría
+31,Servicios profesionales,2,Asesoría
+31,Servicios profesionales,3,Servicios técnicos
+32,Pago de cuotas,1,Cuota periódica
+32,Pago de cuotas,2,Cuota extraordinaria
+33,Recaudaciones,1,Recaudación pública
+33,Recaudaciones,2,Recaudación privada
+34,Operaciones cambiarias,1,Compra de divisas
+34,Operaciones cambiarias,2,Venta de divisas
+35,Devoluciones,1,Reverso de compra
+35,Devoluciones,2,Devolución de transferencia
+35,Devoluciones,3,Reembolso
+36,Anulaciones,1,Anulación de compra
+36,Anulaciones,2,Anulación de débito
+37,Ajustes,1,Ajuste operativo
+37,Ajustes,2,Regularización
+38,Intereses,1,Interés ganado
+38,Intereses,2,Interés cobrado
+39,Bonificaciones,1,Bonificación
+39,Bonificaciones,2,Cashback
+39,Bonificaciones,3,Premio
+40,Transferencias internacionales,1,Remesa internacional recibida
+40,Transferencias internacionales,2,Remesa internacional enviada
+41,Pago de multas,1,Multa de tránsito
+41,Pago de multas,2,Multa administrativa
+42,Donaciones,1,Donación
+42,Donaciones,2,Aporte solidario
+43,Pagos municipales,1,Tasa municipal
+43,Pagos municipales,2,Patente
+43,Pagos municipales,3,Servicio municipal
+44,Pagos gubernamentales,1,Pago estatal
+44,Pagos gubernamentales,2,Trámite gubernamental
+45,Operaciones empresariales,1,Pago empresarial
+45,Operaciones empresariales,2,Transferencia empresarial
+45,Operaciones empresariales,3,Recaudación empresarial
+46,Operaciones en cajero,1,Retiro ATM propio
+46,Operaciones en cajero,2,Retiro ATM otra red
+47,Operaciones en ventanilla,1,Depósito ventanilla
+47,Operaciones en ventanilla,2,Retiro ventanilla
+48,Billetera móvil,1,Transferencia billetera
+48,Billetera móvil,2,Pago billetera
+48,Billetera móvil,3,Retiro billetera
+49,QR y pagos digitales,1,Pago QR
+49,QR y pagos digitales,2,Compra QR
+49,QR y pagos digitales,3,Transferencia QR
+50,Pago de tarjetas,1,Pago tarjeta crédito
+50,Pago de tarjetas,2,Pago tarjeta débito
+51,Adelantos,1,Adelanto de sueldo
+51,Adelantos,2,Adelanto de efectivo
+52,Factoring,1,Anticipo de factura
+52,Factoring,2,Descuento de factura
+53,Leasing,1,Cuota leasing
+53,Leasing,2,Pago residual
+54,Operaciones bursátiles,1,Compra de bonos
+54,Operaciones bursátiles,2,Venta de valores
+54,Operaciones bursátiles,3,Liquidación bursátil
+55,Otros débitos,1,Otros débitos
+55,Otros débitos,2,Cargo no clasificado
+56,Otros créditos,1,Otros créditos
+56,Otros créditos,2,Abono no clasificado
+57,Otros servicios,1,Servicio varios
+57,Otros servicios,2,Operación especial
